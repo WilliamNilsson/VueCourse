@@ -1,2 +1,1 @@
 # VueCourse
-learning Vue.js
