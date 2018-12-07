@@ -9,21 +9,65 @@
 </head>
 <body>
 	<div id="app">
+    <h1 v-once>{{ title }}</h1>
  	 <input type="text" v-on:input="changeTitle">
-    <p>{{ title }}</p>
+    <p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p>
+    <hr>
+    <p v-html="finishedLink">link here</p>
 </div>
+
+<div id="exercise">
+  <p>Vue.js is pretty cool - {{ myName }} - {{ myAge }}</p>
+  <p>{{ myAge * 3 }}</p>
+  <hr>
+  <p>random number between 0 and 1</p>
+  <p>{{ randomNumber() }}</p>
+  <div>
+    <img v-bind:src="citizenLink" style="width:100px;height:100px">
+  </div>
+
+  <div>
+    <input type="text" v-bind:value="myName">
+  </div>
+</div>
+
 <script>
         new Vue({
   el: '#app',
   data: {
-    title: 'Hello world'
+    title: 'Hello world',
+    link: 'http://google.com',
+    finishedLink: '<a href="http://google.com"><Google</a>',
   },
   methods: {
     changeTitle: function(event) {
       this.title = event.target.value;
-    }
+      },
+
+    sayHello: function() {
+      return this.title;
+      },
+
   }
 });
+</script>
+
+<script>
+  new Vue({
+    el: '#exercise',
+    data: {
+      myName: 'William',
+      myAge: 24,
+      citizenLink: 'https://robertsspaceindustries.com/rsi/static/images/SC-fb.jpg',
+      
+    },
+    methods: {
+      randomNumber: function() {
+        return Math.random();
+        
+      },
+    }
+  });
 </script>
 </body>
 </html>
